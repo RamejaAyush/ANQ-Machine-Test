@@ -1,12 +1,10 @@
 import PropTypes from 'prop-types'
 
-const Asset = ({ asset, totalAmount }) => {
-  const assetAmount = (asset.percentage / 100) * totalAmount
+const Asset = ({ asset }) => {
   return (
-    <div>
-      <h3>
-        {asset.name}: {asset.percentage}%, Amount: ${assetAmount.toFixed(2)}
-      </h3>
+    <div className="asset-container">
+      <p>{asset.name}</p>
+      <p>{asset.percentage}%</p>
     </div>
   )
 }

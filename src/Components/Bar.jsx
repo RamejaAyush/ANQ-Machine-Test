@@ -1,17 +1,18 @@
 import Asset from './Asset'
 import PropTypes from 'prop-types'
 
-const Bar = ({ investment, totalAmount }) => {
-  const investmentPercentage = (investment.amount / totalAmount) * 100
+const Bar = ({ investment }) => {
   return (
-    <div>
-      <h2>
-        {investment.name}: {investmentPercentage.toFixed(2)}%, Amount: $
-        {investment.amount}
-      </h2>
-      {investment.assets.map((asset, index) => (
-        <Asset key={index} asset={asset} totalAmount={investment.amount} />
-      ))}
+    <div className="box" style={{ border: `1px solid ${investment.color}` }}>
+      <div className="name">
+        <h3 style={{ color: `${investment.color}` }}>{investment.name}</h3>
+        <h4>Total Amount: ${investment.amount}</h4>
+      </div>
+      <div className="investments">
+        {investment.assets.map((asset, index) => (
+          <Asset key={index} asset={asset} totalAmount={investment.amount} />
+        ))}
+      </div>
     </div>
   )
 }
@@ -20,6 +21,7 @@ Bar.propTypes = {
   investment: PropTypes.shape({
     name: PropTypes.string,
     amount: PropTypes.number,
+    color: PropTypes.string,
     assets: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string,
